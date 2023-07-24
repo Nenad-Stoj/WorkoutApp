@@ -5,6 +5,10 @@ const app = express();
 
 const mongoose = require('mongoose')
 
+process.on('uncaughtException', function (err) {
+    console.log(err);
+  });
+
 app.use(express.json());
 
 app.use('/api/workouts', workoutRoutes)
