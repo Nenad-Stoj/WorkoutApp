@@ -8,6 +8,8 @@ services:
     volumes:
       - ./backend:/app
       - ./backend/node_modules:/app/node_modules
+    networks:
+      - mern-network
   frontend:
     build: ./frontend
     container_name: frontend_c
@@ -16,5 +18,12 @@ services:
     volumes:
       - ./frontend:/app
       - ./frontend/node_modules:/app/node_modules
+    depends_on:
+      - api
     stdin_open: true
     tty: true
+    networks:
+      - mern-network
+networks:
+  mern-network:
+    driver: bridge
